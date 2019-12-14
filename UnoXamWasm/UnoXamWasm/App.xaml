@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="UnoXamWasm.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <Application.MainPage>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage Title="Test" Padding="5">
+                    <yummy:PancakeView
+                        Margin="5"
+                        Padding="5"
+                        BackgroundColor="#bfcdde"
+                        BorderColor="#456287"
+                        BorderIsDashed="true"
+                        BorderThickness="4"
+                        CornerRadius="40,10,40,10"
+                        BorderDrawingStyle="Inside"
+                        HeightRequest="150"
+                        HorizontalOptions="FillAndExpand">
+                        <Label
+                            Margin="5"
+                            Padding="5"
+                            HorizontalOptions="Center"
+                            Text="This box has a nice border."
+                            TextColor="#456287"
+                            VerticalOptions="Center" />
+                    </yummy:PancakeView>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </Application.MainPage>
+</Application>
