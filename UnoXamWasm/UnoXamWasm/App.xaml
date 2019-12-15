@@ -5,30 +5,76 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <Application.MainPage>
-        <NavigationPage>
-            <x:Arguments>
-                <ContentPage Title="Test" Padding="5">
-                    <yummy:PancakeView
-                        Margin="5"
-                        Padding="5"
-                        BackgroundColor="#bfcdde"
-                        BorderColor="#456287"
-                        BorderIsDashed="true"
-                        BorderThickness="4"
-                        CornerRadius="40,10,40,10"
-                        BorderDrawingStyle="Inside"
-                        HeightRequest="150"
-                        HorizontalOptions="FillAndExpand">
-                        <Label
-                            Margin="5"
-                            Padding="5"
-                            HorizontalOptions="Center"
-                            Text="This box has a nice border."
-                            TextColor="#456287"
-                            VerticalOptions="Center" />
-                    </yummy:PancakeView>
+
+        <MasterDetailPage>
+            <MasterDetailPage.Master>
+                <ContentPage Title="Test">
+                    <Label Text="This is a test!" />
                 </ContentPage>
-            </x:Arguments>
-        </NavigationPage>
+            </MasterDetailPage.Master>
+            <MasterDetailPage.Detail>
+                <NavigationPage>
+                    <x:Arguments>
+                        <NavigationPage>
+                            <x:Arguments>
+                                <ContentPage Title="Test" Padding="5">
+                                    <StackLayout>
+                                        <ListView x:Name="names" VerticalOptions="Start">
+                                            <ListView.ItemsSource>
+                                                <x:Array Type="{x:Type x:String}">
+                                                    <x:String>mono</x:String>
+                                                    <x:String>monodroid</x:String>
+                                                    <x:String>monotouch</x:String>
+                                                    <x:String>monorail</x:String>
+                                                    <x:String>monodevelop</x:String>
+                                                    <x:String>monotone</x:String>
+                                                    <x:String>monopoly</x:String>
+                                                    <x:String>monomodal</x:String>
+                                                    <x:String>mononucleosis</x:String>
+                                                </x:Array>
+                                            </ListView.ItemsSource>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <yummy:PancakeView
+                                                            Margin="5"
+                                                            Padding="5"
+                                                            BackgroundColor="#bfcdde"
+                                                            BorderColor="#456287"
+                                                            BorderDrawingStyle="Inside"
+                                                            BorderIsDashed="true"
+                                                            BorderThickness="4"
+                                                            CornerRadius="40,10,40,10"
+                                                            HorizontalOptions="FillAndExpand">
+                                                            <Label
+                                                                Margin="5"
+                                                                Padding="5"
+                                                                HorizontalOptions="Center"
+                                                                TextColor="#456287"
+                                                                VerticalOptions="Center">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="{Binding .}" />
+                                                                        <Span FontAttributes="Bold" Text="Test" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </yummy:PancakeView>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <Label
+                                            HorizontalOptions="Center"
+                                            Text="{Binding SelectedItem, Source={x:Reference names}}"
+                                            VerticalOptions="End" />
+                                    </StackLayout>
+                                </ContentPage>
+                            </x:Arguments>
+                        </NavigationPage>
+                    </x:Arguments>
+                </NavigationPage>
+            </MasterDetailPage.Detail>
+        </MasterDetailPage>
     </Application.MainPage>
 </Application>
